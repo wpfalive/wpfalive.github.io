@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        body {height: 200px; background: beige; } 
+        .dot_blue {height: 4px; width: 4px; border-radius: 2px; /* rounds corners */ background: blue; position: absolute; }
+        .dot_red {height: 4px; width: 4px; border-radius: 2px; /* rounds corners */ background: red; position: absolute; }
+
+        }
+    </style>
+}
+</head>
+<body>
+    <p>Drag the bar to change its width</p>
+    the number of points to draw: <input type="text" name="count" class="num">
+    <input type="button" value="confirm" class="confirm">
+    <div></div>
+</body>
+<script>
+    var btn = document.querySelector(".confirm"),
+        num = document.querySelector(".num")
+        
+    btn.addEventListener("click", function(event) {
+        val = Number(num.value)
+        console.log(val)
+        for(var t = 0; t < val; t++) {
+            draw(Math.random() * 500)
+        }
+    })
+
+    var N = 0,
+        total = 0
+    var draw = function(val) {
+        N++
+        total += val
+        var dot_blue = document.createElement("div")
+        dot_blue.className = "dot_blue"
+        dot_blue.style.left = N - 2 + 'px'
+        dot_blue.style.top = val - 2 + 'px'
+        document.body.appendChild(dot_blue)
+        var dot_red = document.createElement("div")
+        dot_red.className = "dot_red"
+        dot_red.style.left = N - 2 + 'px'
+        dot_red.style.top = total / N - 2 + 'px'
+        document.body.appendChild(dot_red)
+
+
+    }
+    // addEventListener("click", function(ev) {
+    //     var dot = document.createElement("div")
+    //     dot.className = "dot"
+    //     dot.style.left = ev.clientX - 2 + 'px'
+    //     dot.style.top = ev.clientY - 2 + 'px'
+    //     document.body.appendChild(dot)
+    // })
+
+    // var lastX
+    // var rect = document.querySelector("div")
+    // rect.addEventListener("mousedown", function(event) {
+    //     if(event.which == 1) {
+    //         lastX = event.pageX
+    //         addEventListener("mousemove", moved)
+    //         event.preventDefault()
+    //     }
+    // })
+
+    // //按钮是否按下了 true or false
+    // function buttonPressed(event) {
+    //     if(event.buttons == null) {
+    //         return event.which != 0
+    //     } else {
+    //         return event.buttons != 0
+    //     }
+    // }
+
+    // function moved(event) {
+
+    //     if(!buttonPressed(event)) {
+    //         console.log("button unpressed", event.buttons, event.which)
+    //         removeEventListener("mousemove", moved)
+    //     } else {
+    //         var dist = event.pageX - lastX
+    //         var newWidth = Math.max(10, rect.offsetWidth + dist)
+    //         rect.style.width = newWidth + "px"
+    //         lastX = event.pageX
+    //     }
+    // }
+
+    // function delegate(node, eventName, selector, handler) {
+
+    // }
+
+    // delegate(p, 'click', 'button.foo.bar', function(e) {
+    //   this === button.foo.bar
+    // })
+    // addEventListener("keydown", ev => {
+    //     console.log("##", ev.keyCode, ev.ctrlKey)
+    //     if(ev.keyCode == 32 && ev.shiftKey) {
+    //         console.log("continuing")
+    //     }
+    // })
+    // addEventListener("keydown", function(ev) {
+    //     if(ev.keyCode == 86) {
+    //         document.body.style.background = "violet"
+    //     }
+    // })
+    // addEventListener("keyup", function(ev) {
+    //     if(ev.keyCode == 86) {
+    //         document.body.style.background = ""
+    //     }
+    // })
+
+    // addEventListener("keypress", function(ev) {
+    //     console.log(String.fromCharCode(ev.charCode))
+    // })
+
+    // addEventListener("click", function(ev) {
+    //     var dot = document.createElement("div")
+    //     dot.className = "dot"
+    //     dot.style.left = (ev.pageX - 2) + 'px'
+    //     dot.style.top = (ev.pageY - 2) + 'px'
+    //     document.body.appendChild(dot)
+    // })
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>
