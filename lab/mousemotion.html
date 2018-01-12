@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>mouse motion</title>
+    <style>
+        .progress {
+            border: 1px solid blue; width: 100px; position: fixed; top: 10px; right: 10px;
+        }
+        .progress > div {
+            height: 12px; background: blue; width: 0%; 
+        }
+        body {
+            height: 2000px;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress"><div></div></div>
+    <p>Scroll me...</p>
+</body>
+<script>
+    var bar = document.querySelector(".progress div")
+    addEventListener("scroll", function() {
+        var max = document.body.scrollHeight - innerHeight,
+            percent = (pageYOffset / max) * 100
+            bar.style.width = percent + "%"
+    })
+    //scroll事件无法preventDefault,因为scroll是在滚动之后触发的(更具体的说是页面滚动,而不是鼠标滚动)
+    //禁用鼠标滚动mousewheel的默认事件，用动画模拟
+    addEventListener("mousewheel", function(event) {
+        requestAnimationFrame(startTime => {
+            requestAnimationFrame(function animate(time) {
+                var elapsed = time - startTime,
+                    scrollHeight
+                if(event.wheelDeltaY > 0) {
+                    scrollHeight = -elapsed * 0.01
+                } else {
+                    scrollHeight = elapsed * 0.01
+                }
+                window.scrollBy(0, scrollHeight)
+                if(time - startTime < 500) {
+                    requestAnimationFrame(animate)
+                }
+            })
+        })
+        event.preventDefault() //如果只有这行代码，那么鼠标滚轮的默认行为就无效了
+    })
+</script>
+</html>
+
+
+
+
+
+
+
