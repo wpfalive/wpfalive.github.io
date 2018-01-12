@@ -24,7 +24,7 @@
         bottom: 0;
     }
     .done {
-
+        opacity:0
     }
     </style>
 </head>
@@ -51,9 +51,10 @@
             setTimeout(function() {
                 if(window.loaded) {
                     progressbar.style.width = '100%'
-                    // setTimeout(function() {
-                    //     progressbar.classList.add("done")
-                    // }, 500)
+                    setTimeout(function() {
+                        progressbar.classList.add("done")
+                    }, 500)
+                    return
                 }
                 progress += random(1, 5)
 
