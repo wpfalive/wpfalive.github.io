@@ -10,42 +10,103 @@
         .progress > div {
             height: 12px; background: blue; width: 0%; 
         }
+
+        .progress-real{position:fixed;z-index:99;left:0;width:0;height:2px;border-radius:0 1px 1px 0;-webkit-transition:all 1000ms;transition:all 1000ms;}
+        .progress-real-top{top:0;background:#fff;box-shadow:0 0 10px #fff; background: gold}
+        .progress-real-top.done{opacity:0}
+
         body {
             height: 2000px;
         }
     </style>
 </head>
 <body>
+    <div id="loadProgress" class="progress-real progress-real-top"></div>
     <div class="progress"><div></div></div>
     <p>Scroll me...</p>
 </body>
 <script>
+    var log = console.log
     var bar = document.querySelector(".progress div")
     addEventListener("scroll", function() {
         var max = document.body.scrollHeight - innerHeight,
             percent = (pageYOffset / max) * 100
             bar.style.width = percent + "%"
     })
+
+    var startTime =  null,
+        lastTime = 0
+    window.addEventListener("mousewheel", function(event) {
+        //使鼠标滚轮转动无效（相当于把滚轮拆了），所以接下来的动画，只与页面滚动有关
+        //页面滚动是由scroll事件触发的，这无法禁止。页面滚动后，产生下面的动画效果
+        event.preventDefault()
+
+        requestAnimationFrame(function animate(time) {
+            if(!startTime) {
+                startTime = time
+            }
+
+            var elapse = time - lastTime
+            var scrollHeight = elapse * 0.6 * Math.sign(event.deltaY)
+            window.scrollBy(0, scrollHeight)
+            lastTime = time
+
+            if(time - startTime < 500) {
+                requestAnimationFrame(animate)
+            }
+            
+        })
+    })
+
+    window.onload=function(){window.loaded=!0};
+
+    (function(){
+        var pbar = document.querySelector("#loadProgress"),
+            progress = 1,
+            random = function(min,max) {
+                return Math.floor(Math.random()*(max-min+1)+min)
+            },
+            onprogress = function() {
+                var timeout = random(10,100)
+                setTimeout(function() {
+                    if(window.loaded) {
+                        pbar.style.width="100%"
+                    setTimeout(function() {
+                        pbar.classList.add("done")},500)
+                    } else { 
+                        progress += random(1,500);
+                        progress>98&&(progress=98);
+                        pbar.style.width=progress+"%"
+                        onprogress()
+                    }
+                },timeout)
+            }
+    onprogress()
+    })()
+        
+
+
+
     //scroll事件无法preventDefault,因为scroll是在滚动之后触发的(更具体的说是页面滚动,而不是鼠标滚动)
     //禁用鼠标滚动mousewheel的默认事件，用动画模拟
-    addEventListener("mousewheel", function(event) {
-        requestAnimationFrame(startTime => {
-            requestAnimationFrame(function animate(time) {
-                var elapsed = time - startTime,
-                    scrollHeight
-                if(event.wheelDeltaY > 0) {
-                    scrollHeight = -elapsed * 0.01
-                } else {
-                    scrollHeight = elapsed * 0.01
-                }
-                window.scrollBy(0, scrollHeight)
-                if(time - startTime < 500) {
-                    requestAnimationFrame(animate)
-                }
-            })
-        })
-        event.preventDefault() //如果只有这行代码，那么鼠标滚轮的默认行为就无效了
-    })
+    // addEventListener("mousewheel", function(event) {
+    //     requestAnimationFrame(startTime => {
+    //         requestAnimationFrame(function animate(time) {
+    //             var elapsed = time - startTime,
+    //                 scrollHeight
+    //             if(event.wheelDeltaY > 0) {
+    //                 scrollHeight = -elapsed * 0.01
+    //             } else {
+    //                 scrollHeight = elapsed * 0.01
+    //             }
+    //             window.scrollBy(0, scrollHeight)
+    //             if(time - startTime < 500) {
+    //                 requestAnimationFrame(animate)
+    //             }
+    //         })
+    //     })
+    //     event.preventDefault() //如果只有这行代码，那么鼠标滚轮的默认行为就无效了
+    // })
 </script>
 </html>
 

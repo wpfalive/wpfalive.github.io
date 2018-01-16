@@ -19,6 +19,7 @@
 
         var x = 150
         var y = 200
+        var speed = 5
         var leftDown = false
         var rightDown = false
         var img = new Image()
@@ -53,9 +54,9 @@
 
         setInterval(function() {
             if(leftDown) {
-                x -= 10
+                x -= speed
             } else if(rightDown) {
-                x += 10
+                x += speed
             }
 
             context.clearRect(0, 0, canvas.width, canvas.height)
