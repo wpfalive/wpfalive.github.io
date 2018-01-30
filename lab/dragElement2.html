@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>元素拖动</title>
+    <style>
+        .move {
+            position: fixed;
+            background-color: pink;
+            width: 100px;
+            height: 100px;
+            user-select: none;
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+    <div data-movable="true" style="left: 100px; top: 100px; z-index: 100;" class="move">拖我</div>
+    <!-- <div style="left: 100px; top: 100px; z-index: 100;" class="move">拖我</div>
+    <div style="left: 100px; top: 100px; z-index: 100;" class="move">拖我</div>
+    <div style="left: 100px; top: 100px; z-index: 100;" class="move">拖我</div> -->
+    <script src="movable.js">
+
+
+    </script>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>进度条组件</title>
+</head>
+<style>
+
+</style>
+<body>
+    <script>
+        class Pace {
+            constructor() {
+                this.el = document.createElement("div")
+                /*宽度，透明度渐变*/
+                this.el.style = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    background-color: red;
+                    height: 5px;
+                    transition: all .4s;
+                `
+                this.el.style.width = '5%'
+                document.body.appendChild(this.el)
+            }
+
+            set(percentage) {
+                this.el.style.width = percentage + "%"
+            }
+
+            add() {
+                var curWidth = parseInt(this.el.style.width)
+                if(curWidth > 95) {
+                    return
+                }
+                this.el.style.width = curWidth + 5 + "%"
+            }
+
+            complete() {
+                this.el.style.width = '100%'
+                //先透明，再消失
+                setTimeout(() => {
+                    this.el.style.opacity = 0
+                    setTimeout(() => {
+                        this.el.parentNode.removeChild(this.el)
+                    }, 400)
+                }, 500)
+            }
+        }
+
+
+    </script>
+</body>
+</html>

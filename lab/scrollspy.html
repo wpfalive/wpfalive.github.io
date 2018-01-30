@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>scrollspy</title>
+    <style>
+        * {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+        .toc {
+            position: fixed;
+            top: 0;
+            right: 0;
+        }
+        .toc .active {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>lorem1</h1>
+    <p>lorem</p>
+    <p>lorem</p>
+    <h1>lorem2</h1>
+    <p>lorem</p>
+    <p>lorem</p>
+    <h1>lorem3</h1>
+    <p>lorem</p>
+    <p>lorem</p>
+    <h1>lorem4</h1>
+    <p>lorem</p>
+    <p>lorem</p>
+    <h1>lorem5</h1>
+    <p>lorem</p>
+    <p>lorem</p>
+    <script>
+        
+        var scrollSpy = function() {
+            var titles = Array.from(document.querySelectorAll("h1"))
+            var toc = document.createElement("ul")
+            toc.classList.add("toc")
+            titles.forEach(item => {
+                var titleLi = document.createElement("li")
+                titleLi.appendChild(document.createTextNode(item.innerHTML))
+                toc.appendChild(titleLi)
+            })
+            document.body.appendChild(toc)
+
+            window.addEventListener("scroll", function() {
+                var poses = titles.map(item => item.getBoundingClientRect())
+                for(var i = 0; i < poses.length; i++) {
+                    if(poses[i].bottom > 0) {
+                        break
+                    }
+                }
+                console.log(i)
+                Array.from(toc.children).forEach(item => item.classList.remove("active"))
+                toc.children[i].classList.add("active")
+
+            })
+        }
+
+        window.onload = scrollSpy()
+    </script>
+</body>
+</html>
