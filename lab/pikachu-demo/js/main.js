@@ -195,7 +195,7 @@
     border-radius: 50px;
 }
 /*
- * 好了，这只皮卡丘叫丁丁，送给你
+ * 好了，这只皮卡丘叫柠檬女孩，送给你
  */
 `
 /*所有的setInterval都可以改写成setTimeout*/

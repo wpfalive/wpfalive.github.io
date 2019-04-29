@@ -60,13 +60,13 @@
     <span id="nav">
       <ul>
          
-          <li><a href="/">Home</a></li>
+          <li><a href="/">Inici</a></li>
          
-          <li><a href="/about/">About</a></li>
+          <li><a href="/about/">Qui som</a></li>
          
-          <li><a href="/archives/">Writing</a></li>
+          <li><a href="/archives/">Articles</a></li>
          
-          <li><a href="/lab">Projects</a></li>
+          <li><a href="/lab">Projectes</a></li>
         
       </ul>
     </span>
@@ -80,10 +80,10 @@
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
       </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
+      <span id="i-prev" class="info" style="display:none;">Post Anterior</span>
+      <span id="i-next" class="info" style="display:none;">Post Següent</span>
+      <span id="i-top" class="info" style="display:none;">Adalt</span>
+      <span id="i-share" class="info" style="display:none;">Compartir Post</span>
     </span>
     <br/>
     <div id="share" style="display: none">
@@ -149,7 +149,7 @@
 <li>topdown为True，则先返回顶层文件，再遍历子目录中的文件。反之，先遍历子目录中的文件，再返回顶层目录下的文件。</li>
 </ul>
 <a id="more"></a>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">remove_dir</span><span class="params">(root_path)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> os.path.exists(root_path) == <span class="keyword">False</span>:</span><br><span class="line">                <span class="keyword">print</span> <span class="string">"folder %s not exits"</span> % root_path</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">if</span> os.path.isdir(root_path) == <span class="keyword">False</span>:</span><br><span class="line">                <span class="keyword">print</span> <span class="string">"folder %s is not a dir"</span> % root_path</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">for</span> root, subpaths, files <span class="keyword">in</span> os.walk(root_path, <span class="keyword">False</span>):</span><br><span class="line">                <span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">                        file_path = os.path.join(root, file)</span><br><span class="line">                        <span class="keyword">print</span> <span class="string">"delete file:%s"</span> % file_path</span><br><span class="line">                        os.remove(file_path)</span><br><span class="line">                <span class="keyword">print</span> <span class="string">"delete dir:%s"</span> % root</span><br><span class="line">                os.rmdir(root)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>  __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">        remove_dir(<span class="string">"/Users/wpf/git/t"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">remove_dir</span><span class="params">(root_path)</span>:</span></div><div class="line">        <span class="keyword">if</span> os.path.exists(root_path) == <span class="keyword">False</span>:</div><div class="line">                <span class="keyword">print</span> <span class="string">"folder %s not exits"</span> % root_path</div><div class="line">                <span class="keyword">return</span></div><div class="line">        <span class="keyword">if</span> os.path.isdir(root_path) == <span class="keyword">False</span>:</div><div class="line">                <span class="keyword">print</span> <span class="string">"folder %s is not a dir"</span> % root_path</div><div class="line">                <span class="keyword">return</span></div><div class="line">        <span class="keyword">for</span> root, subpaths, files <span class="keyword">in</span> os.walk(root_path, <span class="keyword">False</span>):</div><div class="line">                <span class="keyword">for</span> file <span class="keyword">in</span> files:</div><div class="line">                        file_path = os.path.join(root, file)</div><div class="line">                        <span class="keyword">print</span> <span class="string">"delete file:%s"</span> % file_path</div><div class="line">                        os.remove(file_path)</div><div class="line">                <span class="keyword">print</span> <span class="string">"delete dir:%s"</span> % root</div><div class="line">                os.rmdir(root)</div><div class="line"></div><div class="line"><span class="keyword">if</span>  __name__ == <span class="string">"__main__"</span>:</div><div class="line">        remove_dir(<span class="string">"/Users/wpf/git/t"</span>)</div></pre></td></tr></table></figure>
 
   </div>
 </article>
@@ -164,13 +164,13 @@
     <div id="nav-footer" style="display: none">
       <ul>
          
-          <li><a href="/">Home</a></li>
+          <li><a href="/">Inici</a></li>
          
-          <li><a href="/about/">About</a></li>
+          <li><a href="/about/">Qui som</a></li>
          
-          <li><a href="/archives/">Writing</a></li>
+          <li><a href="/archives/">Articles</a></li>
          
-          <li><a href="/lab">Projects</a></li>
+          <li><a href="/lab">Projectes</a></li>
         
       </ul>
     </div>
@@ -199,10 +199,10 @@
     </div>
 
     <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menú</a>
         <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Compartir</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Cap amunt</a>
     </div>
 
   </div>
@@ -211,19 +211,19 @@
     
     <footer id="footer">
   <div class="footer-left">
-    Copyright &copy; 2018 Pengfei Wang
+    Copyright &copy; 2019 Pengfei Wang
   </div>
   <div class="footer-right">
     <nav>
       <ul>
          
-          <li><a href="/">Home</a></li>
+          <li><a href="/">Inici</a></li>
          
-          <li><a href="/about/">About</a></li>
+          <li><a href="/about/">Qui som</a></li>
          
-          <li><a href="/archives/">Writing</a></li>
+          <li><a href="/archives/">Articles</a></li>
          
-          <li><a href="/lab">Projects</a></li>
+          <li><a href="/lab">Projectes</a></li>
         
       </ul>
     </nav>
