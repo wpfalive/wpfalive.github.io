@@ -195,7 +195,7 @@
     border-radius: 50px;
 }
 /*
- * 好了，这只皮卡丘送给柠檬女孩
+ * 这只皮卡丘送给超可爱的燕青同学。
  */
 `
 /*所有的setInterval都可以改写成setTimeout*/
